@@ -7,9 +7,14 @@ import {
   ScrollRestoration,
 } from 'react-router';
 
+import { HeroUIProvider } from '@heroui/system';
+import { ThemeProvider } from 'next-themes';
+
 import type { Route } from './+types/root';
 
 import '@/styles/globals.css';
+import '@fontsource-variable/roboto-flex';
+import '@fontsource-variable/roboto-mono';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -31,7 +36,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function Root() {
-  return <Outlet />;
+  return (
+    <HeroUIProvider>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <Outlet />
+      </ThemeProvider>
+    </HeroUIProvider>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
