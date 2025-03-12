@@ -11,8 +11,7 @@
   "tabWidth": 2,
   "trailingComma": "all",
   "useTabs": false,
-  "plugins": ["prettier-plugin-tailwindcss", "@ianvs/prettier-plugin-sort-imports"],
-  "tailwindConfig": "tailwind.config.js",
+  "plugins": ["@ianvs/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"],
   "importOrder": [
     "^(react/(.*)$)|^(react$)",
     "",
@@ -41,5 +40,6 @@
     "^[./]"
   ],
   "importOrderParserPlugins": ["typescript", "jsx", "decorators-legacy"],
-  "importOrderTypeScriptVersion": "5.0.0"
+  "importOrderTypeScriptVersion": "5.0.0",
+  "tailwindConfig": "tailwind.config.js"
 }

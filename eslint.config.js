@@ -24,15 +24,15 @@ export default tseslint.config(
       react,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
-      prettier,
       tailwindcss: tailwind,
+      prettier,
     },
     rules: {
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
-      ...prettier.configs.recommended.rules,
       ...tailwind.configs.recommended.rules,
+      ...prettier.configs.recommended.rules,
       'react-refresh/only-export-components': [
         'warn',
         {
