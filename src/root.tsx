@@ -16,6 +16,8 @@ import '@/styles/globals.css';
 import '@fontsource-variable/roboto-flex';
 import '@fontsource-variable/roboto-mono';
 
+import Container from '@/components/Container';
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -39,7 +41,9 @@ export default function Root() {
   return (
     <HeroUIProvider>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <Outlet />
+        <Container>
+          <Outlet />
+        </Container>
       </ThemeProvider>
     </HeroUIProvider>
   );

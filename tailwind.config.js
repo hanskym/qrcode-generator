@@ -6,7 +6,7 @@ module.exports = {
   content: [
     './src/components/**/*.{js,ts,jsx,tsx}',
     './src/routes/**/*.{js,ts,jsx,tsx}',
-    './node_modules/@heroui/theme/dist/components/(button|card|chip|divider|dropdown|input|link|select|ripple|spinner|menu|popover|form|listbox|scroll-shadow).js',
+    './node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
