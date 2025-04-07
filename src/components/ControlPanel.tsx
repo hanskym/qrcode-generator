@@ -13,6 +13,8 @@ import { QRCodeCanvas } from 'qrcode.react';
 
 import { Icons } from '@/components/Icons';
 
+import { saveToClipboard, saveToPDF, saveToPNG } from '@/lib/export';
+
 type ErrorCorrectionLevel = 'L' | 'M' | 'Q' | 'H';
 
 export default function ControlPanel() {
@@ -29,15 +31,15 @@ export default function ControlPanel() {
       <CardHeader className="flex items-center justify-center gap-3 md:justify-start">
         <Icons.logo className="size-10" />
         <div className="flex flex-col">
-          <Link className="text-base" to="/">
+          <Link className="w-fit text-base" to="/">
             QR Code Generator
           </Link>
           <p className="text-small text-default-500">
-            Simple React QR Code Generator for creating customizable QR codes.
+            Buat QR Code yang bisa dikustomisasi dan diekspor langsung dari browser.
           </p>
         </div>
       </CardHeader>
-      <CardBody>
+      <CardBody className="my-4">
         <div className="grid grid-cols-6 gap-6">
           <div className="col-span-full space-y-4 md:col-span-4">
             <div className="flex items-center gap-2">
@@ -48,9 +50,11 @@ export default function ControlPanel() {
             <div className="space-y-2">
               <p className="text-sm text-default-500">Masukkan URL tautan anda.</p>
               <Input
+                id="url"
+                name="url"
                 label="URL"
                 type="text"
-                placeholder="https://www.google.com/"
+                placeholder="https://www.google.com"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 endContent={
@@ -72,7 +76,6 @@ export default function ControlPanel() {
                     <PopoverContent>Paste Clipboard</PopoverContent>
                   </Popover>
                 }
-                isRequired
               />
             </div>
 
@@ -84,6 +87,8 @@ export default function ControlPanel() {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Input
+                  id="foreground"
+                  name="foreground"
                   label="Foreground"
                   type="text"
                   placeholder="#000000"
@@ -111,6 +116,8 @@ export default function ControlPanel() {
 
               <div className="space-y-2">
                 <Input
+                  id="background"
+                  name="background"
                   label="Background"
                   type="text"
                   placeholder="#FFFFFF"
@@ -146,7 +153,9 @@ export default function ControlPanel() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Select
-                    label="Koreksi Kode"
+                    id="errorCorrection"
+                    name="errorCorrection"
+                    label="Tingkat Koreksi"
                     selectedKeys={[errorCorrection]}
                     onChange={(e) => setErrorCorrection(e.target.value as ErrorCorrectionLevel)}
                   >
@@ -167,6 +176,8 @@ export default function ControlPanel() {
 
                 <div className="space-y-2">
                   <Select
+                    id="size"
+                    name="size"
                     label="Ukuran"
                     selectedKeys={[size.toString()]}
                     onChange={(e) => setSize(Number(e.target.value))}
@@ -192,43 +203,47 @@ export default function ControlPanel() {
             </div>
           </div>
 
-          <div className="col-span-full space-y-4 md:col-span-2">
-            <div
-              ref={canvasRef}
-              className="flex items-center justify-center rounded-2xl bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] p-4 [background-size:16px_16px]"
-            >
-              <QRCodeCanvas
-                size={200}
-                bgColor={bgColor}
-                fgColor={fgColor}
-                value={url}
-                level={errorCorrection}
-              />
-            </div>
+          <div className="col-span-full md:col-span-2">
+            <div className="flex h-full flex-col gap-4">
+              <div
+                ref={canvasRef}
+                className="flex items-center justify-center rounded-2xl bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] p-4 [background-size:16px_16px]"
+              >
+                <QRCodeCanvas
+                  size={200}
+                  bgColor={bgColor}
+                  fgColor={fgColor}
+                  value={url || 'https://www.google.com'}
+                  level={errorCorrection}
+                />
+              </div>
 
-            <div className="flex flex-col gap-2">
-              <h2 className="text-xl font-semibold">Ekspor</h2>
-              <Button
-                className="bg-blue-600 font-medium text-white"
-                startContent={<Icons.clipboardCopy className="size-4" />}
-                fullWidth
-              >
-                Salin Clipboard
-              </Button>
-              <Button
-                className="bg-green-600 font-medium text-white"
-                startContent={<Icons.fileImage className="size-4" />}
-                fullWidth
-              >
-                Gambar PNG
-              </Button>
-              <Button
-                className="bg-red-600 font-medium text-white"
-                startContent={<Icons.file className="size-4" />}
-                fullWidth
-              >
-                File PDF
-              </Button>
+              <div className="mt-auto space-y-4">
+                <h2 className="text-xl font-semibold">Ekspor</h2>
+                <div className="flex flex-wrap gap-2">
+                  <Button
+                    className="bg-blue-600 font-medium text-white"
+                    startContent={<Icons.clipboardCopy className="size-4" />}
+                    onClick={() => saveToClipboard(canvasRef)}
+                  >
+                    Clipboard
+                  </Button>
+                  <Button
+                    className="bg-green-600 font-medium text-white"
+                    startContent={<Icons.fileImage className="size-4" />}
+                    onClick={() => saveToPNG(canvasRef, size, url)}
+                  >
+                    PNG
+                  </Button>
+                  <Button
+                    className="bg-red-600 font-medium text-white"
+                    startContent={<Icons.file className="size-4" />}
+                    onClick={() => saveToPDF(canvasRef, url)}
+                  >
+                    PDF
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
