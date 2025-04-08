@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "vite-react-starter",
+      "name": "qrcode-generator",
       "dependencies": {
         "@fontsource-variable/roboto-flex": "^5.2.5",
         "@fontsource-variable/roboto-mono": "^5.2.5",

@@ -6,13 +6,15 @@ import checker from 'vite-plugin-checker';
 import { VitePWA, type VitePWAOptions } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
+import { siteConfig } from '@/config/site';
+
 const pwaOptions: Partial<VitePWAOptions> = {
   registerType: 'autoUpdate',
   manifest: {
-    name: 'Vite React Starter',
-    short_name: 'vite-react-starter',
-    description: 'A Vite starter template for React with PWA.',
-    lang: 'en',
+    name: siteConfig.name,
+    short_name: siteConfig.name,
+    description: siteConfig.description,
+    lang: 'id',
     dir: 'ltr',
     start_url: '/',
     display: 'standalone',

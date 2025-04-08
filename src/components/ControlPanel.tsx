@@ -13,6 +13,7 @@ import { QRCodeCanvas } from 'qrcode.react';
 
 import { Icons } from '@/components/Icons';
 
+import { siteConfig } from '@/config/site';
 import { saveToClipboard, saveToPDF, saveToPNG } from '@/lib/export';
 
 type ErrorCorrectionLevel = 'L' | 'M' | 'Q' | 'H';
@@ -32,11 +33,9 @@ export default function ControlPanel() {
         <Icons.logo className="size-10" />
         <div className="flex flex-col">
           <Link className="w-fit text-base" to="/">
-            QR Code Generator
+            {siteConfig.name}
           </Link>
-          <p className="text-small text-default-500">
-            Buat QR Code yang bisa dikustomisasi dan diekspor langsung dari browser.
-          </p>
+          <p className="text-small text-default-500">{siteConfig.description}</p>
         </div>
       </CardHeader>
       <CardBody className="my-4">
@@ -219,7 +218,11 @@ export default function ControlPanel() {
               </div>
 
               <div className="mt-auto space-y-4">
-                <h2 className="text-xl font-semibold">Ekspor</h2>
+                <div className="flex items-center gap-2">
+                  <Icons.share className="size-6" />
+                  <h2 className="text-xl font-semibold">Ekspor</h2>
+                </div>
+
                 <div className="flex flex-wrap gap-2">
                   <Button
                     className="bg-blue-600 font-medium text-white"
@@ -249,10 +252,21 @@ export default function ControlPanel() {
         </div>
       </CardBody>
       <Divider />
-      <CardFooter>
-        <p className="text-sm text-default-500">
-          &copy; {new Date().getFullYear()} QR Code Generator. All rights reserved.
+      <CardFooter className="flex items-center justify-between gap-2">
+        <p className="text-center text-sm text-default-500 sm:text-left">
+          &copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
         </p>
+
+        <a
+          className="flex items-center justify-center transition-all duration-300 hover:text-default-500/80"
+          href="https://github.com/hanskym/qrcode-generator"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Repositori GitHub Generator QR Code"
+        >
+          <Icons.github className="size-4 md:mr-1" />
+          <span className="hidden text-sm md:block">GitHub</span>
+        </a>
       </CardFooter>
     </Card>
   );
