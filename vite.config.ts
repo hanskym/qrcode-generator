@@ -2,18 +2,17 @@ import { defineConfig } from 'vite';
 
 import { reactRouter } from '@react-router/dev/vite';
 import { visualizer } from 'rollup-plugin-visualizer';
+import babel from 'vite-plugin-babel';
 import checker from 'vite-plugin-checker';
 import { VitePWA, type VitePWAOptions } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
-import { siteConfig } from '@/config/site';
-
 const pwaOptions: Partial<VitePWAOptions> = {
   registerType: 'autoUpdate',
   manifest: {
-    name: siteConfig.name,
-    short_name: siteConfig.name,
-    description: siteConfig.description,
+    name: 'QR Code Generator',
+    short_name: 'QR Code Generator',
+    description: 'Buat QR Code yang bisa dikustomisasi dan diekspor langsung dari browser.',
     lang: 'id',
     dir: 'ltr',
     start_url: '/',
@@ -34,6 +33,13 @@ const pwaOptions: Partial<VitePWAOptions> = {
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
+    babel({
+      filter: /\.(ts|tsx)$/,
+      babelConfig: {
+        presets: ['@babel/preset-typescript'],
+        plugins: ['babel-plugin-react-compiler'],
+      },
+    }),
     reactRouter(),
     checker({
       typescript: true,
