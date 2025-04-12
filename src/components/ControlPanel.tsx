@@ -283,12 +283,13 @@ export default function ControlPanel() {
       <Divider />
       <CardFooter className="flex items-center justify-between gap-2">
         <p className="text-center text-sm text-default-500 sm:text-left">
-          &copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
+          &copy; {new Date().getFullYear()} <Link to="/">{siteConfig.name}</Link>. All rights
+          reserved.
         </p>
 
         <a
           className="flex items-center justify-center transition-all duration-300 hover:text-default-500/80"
-          href="https://github.com/hanskym/qrcode-generator"
+          href={siteConfig.githubUrl}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="QR Code Generator GitHub Repository"

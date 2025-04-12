@@ -16,6 +16,7 @@ export const siteConfig = {
   description: 'Create customizable QR Codes and export them directly from the browser.',
   keywords: ['QR Code', 'QR Code Custom', 'Generator QR Online'],
   ogImage: '/og-image.png',
+  githubUrl: 'https://github.com/hanskym/qrcode-generator',
 };
 
 export type SiteConfig = typeof siteConfig;
