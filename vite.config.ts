@@ -12,8 +12,8 @@ const pwaOptions: Partial<VitePWAOptions> = {
   manifest: {
     name: 'QR Code Generator',
     short_name: 'QR Code Generator',
-    description: 'Buat QR Code yang bisa dikustomisasi dan diekspor langsung dari browser.',
-    lang: 'id',
+    description: 'Create customizable QR Codes and export them directly from the browser.',
+    lang: 'en',
     dir: 'ltr',
     start_url: '/',
     display: 'standalone',
@@ -22,9 +22,16 @@ const pwaOptions: Partial<VitePWAOptions> = {
     prefer_related_applications: false,
     icons: [
       {
-        src: '/vite.svg',
-        sizes: '48x48 72x72 96x96 128x128 256x256',
-        purpose: 'any',
+        src: '/web-app-manifest-192x192.png',
+        sizes: '192x192',
+        type: 'image/png',
+        purpose: 'maskable',
+      },
+      {
+        src: '/web-app-manifest-512x512.png',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'maskable',
       },
     ],
   },

@@ -29,7 +29,7 @@ export function meta() {
     { property: 'og:url', content: siteConfig.url },
     { property: 'og:site_name', content: siteConfig.name },
     { property: 'og:type', content: 'website' },
-    { property: 'og:locale', content: 'id_ID' },
+    { property: 'og:locale', content: 'en_US' },
   ];
 }
 

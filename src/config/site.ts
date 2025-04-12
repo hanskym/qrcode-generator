@@ -13,7 +13,7 @@ export const siteConfig = {
       twitterUsername: '@hansky_m',
     },
   },
-  description: 'Buat QR Code yang bisa dikustomisasi dan diekspor langsung dari browser.',
+  description: 'Create customizable QR Codes and export them directly from the browser.',
   keywords: ['QR Code', 'QR Code Custom', 'Generator QR Online'],
   ogImage: '/og-image.png',
 };

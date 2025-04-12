@@ -47,7 +47,7 @@ export default function ControlPanel() {
             </div>
 
             <div className="space-y-2">
-              <p className="text-sm text-default-500">Masukkan URL tautan anda.</p>
+              <p className="text-sm text-default-500">Enter your link URL.</p>
               <Input
                 id="url"
                 name="url"
@@ -85,7 +85,7 @@ export default function ControlPanel() {
 
             <div className="flex items-center gap-2">
               <Icons.swatch className="size-6" />
-              <h2 className="text-xl font-semibold">Warna</h2>
+              <h2 className="text-xl font-semibold">Color</h2>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
@@ -175,7 +175,7 @@ export default function ControlPanel() {
             <div className="col-span-full space-y-4 md:col-span-4">
               <div className="flex items-center gap-2">
                 <Icons.settings className="size-6" />
-                <h2 className="text-xl font-semibold">Pengaturan</h2>
+                <h2 className="text-xl font-semibold">Settings</h2>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
@@ -183,7 +183,7 @@ export default function ControlPanel() {
                   <Select
                     id="errorCorrection"
                     name="errorCorrection"
-                    label="Tingkat Koreksi"
+                    label="Error Correction"
                     selectedKeys={[errorCorrection]}
                     onChange={(e) => setErrorCorrection(e.target.value as ErrorCorrectionLevel)}
                   >
@@ -206,7 +206,7 @@ export default function ControlPanel() {
                   <Select
                     id="size"
                     name="size"
-                    label="Ukuran"
+                    label="Size"
                     selectedKeys={[size.toString()]}
                     onChange={(e) => setSize(Number(e.target.value))}
                   >
@@ -249,7 +249,7 @@ export default function ControlPanel() {
               <div className="mt-auto space-y-4">
                 <div className="flex items-center gap-2">
                   <Icons.share className="size-6" />
-                  <h2 className="text-xl font-semibold">Ekspor</h2>
+                  <h2 className="text-xl font-semibold">Export</h2>
                 </div>
 
                 <div className="flex flex-wrap gap-2">
@@ -291,7 +291,7 @@ export default function ControlPanel() {
           href="https://github.com/hanskym/qrcode-generator"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Repositori GitHub Generator QR Code"
+          aria-label="QR Code Generator GitHub Repository"
         >
           <Icons.github className="size-4 md:mr-1" />
           <span className="hidden text-sm md:block">GitHub</span>
