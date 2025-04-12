@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: 'QR Code Generator',
-  url: 'https://qrcode.hansky.dev',
+  url: 'https://qrcode-generator-hsky.pages.dev',
   aboutMe: {
     altName: 'Hansky Mulya',
     fullName: 'Farhan Rinsky Mulya',
