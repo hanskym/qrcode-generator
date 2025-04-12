@@ -36,7 +36,7 @@
     "@react-router/fs-routes": "^7.3.0",
     "@react-router/node": "^7.3.0",
     "@react-router/serve": "^7.3.0",
-    "@uiw/react-color": "^2.4.5",
+    "@uiw/react-color-sketch": "^2.4.5",
     "clsx": "^2.1.1",
     "framer-motion": "^12.5.0",
     "isbot": "^5.1.23",

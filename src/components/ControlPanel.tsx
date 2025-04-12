@@ -8,7 +8,7 @@ import { Divider } from '@heroui/divider';
 import { Input } from '@heroui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@heroui/popover';
 import { Select, SelectItem } from '@heroui/select';
-import { Sketch } from '@uiw/react-color';
+import Sketch from '@uiw/react-color-sketch';
 import { QRCodeCanvas } from 'qrcode.react';
 
 import { Icons } from '@/components/Icons';
@@ -65,8 +65,13 @@ export default function ControlPanel() {
                         variant="bordered"
                         isIconOnly
                         onClick={async () => {
-                          const text = navigator.clipboard.readText();
-                          setUrl(await text);
+                          try {
+                            const text = await navigator.clipboard.readText();
+                            setUrl(text);
+                          } catch (err) {
+                            console.error('Clipboard read failed:', err);
+                            alert('Clipboard access not available on this device.');
+                          }
                         }}
                       >
                         <Icons.clipboard className="size-4" />
@@ -92,7 +97,18 @@ export default function ControlPanel() {
                   type="text"
                   placeholder="#000000"
                   value={fgColor}
-                  onChange={(e) => setFgColor(e.target.value)}
+                  onChange={(e) => {
+                    let value = e.target.value.trim();
+
+                    if (!value.startsWith('#')) {
+                      value = '#' + value;
+                    }
+
+                    const isValidHex = /^#([0-9A-Fa-f]{0,6})$/.test(value);
+                    if (isValidHex) {
+                      setFgColor(value);
+                    }
+                  }}
                   endContent={
                     <Popover>
                       <PopoverTrigger>
@@ -106,6 +122,7 @@ export default function ControlPanel() {
                           onChange={(color) => {
                             setFgColor(color.hex);
                           }}
+                          disableAlpha
                         />
                       </PopoverContent>
                     </Popover>
@@ -121,7 +138,18 @@ export default function ControlPanel() {
                   type="text"
                   placeholder="#FFFFFF"
                   value={bgColor}
-                  onChange={(e) => setBgColor(e.target.value)}
+                  onChange={(e) => {
+                    let value = e.target.value.trim();
+
+                    if (!value.startsWith('#')) {
+                      value = '#' + value;
+                    }
+
+                    const isValidHex = /^#([0-9A-Fa-f]{0,6})$/.test(value);
+                    if (isValidHex) {
+                      setBgColor(value);
+                    }
+                  }}
                   endContent={
                     <Popover>
                       <PopoverTrigger>
@@ -135,6 +163,7 @@ export default function ControlPanel() {
                           onChange={(color) => {
                             setBgColor(color.hex);
                           }}
+                          disableAlpha
                         />
                       </PopoverContent>
                     </Popover>
